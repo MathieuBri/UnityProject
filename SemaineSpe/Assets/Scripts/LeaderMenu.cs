@@ -7,27 +7,30 @@ using UnityEngine;
 
 public class LeaderMenu : MonoBehaviour
 {
-    private List<Leaderboard> firstlevel = new List<Leaderboard>();
+    public List<TextMeshProUGUI> level1GUI;
+    public List<TextMeshProUGUI> level2GUI;
+
+    private List<Leaderboard> firstLevel = new List<Leaderboard>();
     private List<Leaderboard> secondLevel = new List<Leaderboard>();
     void Start()
     {
         //SaveLeaderboard();
 
-        firstlevel = Leaderboard.FirstLevel();
+        firstLevel = Leaderboard.FirstLevel();
         secondLevel = Leaderboard.SecondLevel();
 
-        if (firstlevel != null)
+        if (firstLevel != null)
         {
-            GameObject.Find("Level1FirstTime").GetComponent<TextMeshProUGUI>().text = firstlevel[0].time.ToString();
-            GameObject.Find("Level1SecondTime").GetComponent<TextMeshProUGUI>().text = firstlevel[1].time.ToString();
-            GameObject.Find("Level1ThirdTime").GetComponent<TextMeshProUGUI>().text = firstlevel[2].time.ToString();
+            level1GUI[0].GetComponent<TextMeshProUGUI>().text = firstLevel[0].time.ToString();
+            level1GUI[1].GetComponent<TextMeshProUGUI>().text = firstLevel[1].time.ToString();
+            level1GUI[2].GetComponent<TextMeshProUGUI>().text = firstLevel[2].time.ToString();
         }
 
         if (secondLevel != null)
         {
-            GameObject.Find("Level2FirstTime").GetComponent<TextMeshProUGUI>().text = secondLevel[0].time.ToString();
-            GameObject.Find("Level2SecondTime").GetComponent<TextMeshProUGUI>().text = secondLevel[1].time.ToString();
-            GameObject.Find("Level2ThirdTime").GetComponent<TextMeshProUGUI>().text = secondLevel[2].time.ToString();
+            level2GUI[0].GetComponent<TextMeshProUGUI>().text = secondLevel[0].time.ToString();
+            level2GUI[1].GetComponent<TextMeshProUGUI>().text = secondLevel[1].time.ToString();
+            level2GUI[2].GetComponent<TextMeshProUGUI>().text = secondLevel[2].time.ToString();
         }
     }
 
