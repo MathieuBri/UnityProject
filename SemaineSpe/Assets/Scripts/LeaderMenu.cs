@@ -9,15 +9,11 @@ public class LeaderMenu : MonoBehaviour
 {
     public List<TextMeshProUGUI> level1GUI;
     public List<TextMeshProUGUI> level2GUI;
-
-    private List<Leaderboard> firstLevel = new List<Leaderboard>();
-    private List<Leaderboard> secondLevel = new List<Leaderboard>();
     void Start()
     {
-        //SaveLeaderboard();
-
-        firstLevel = Leaderboard.FirstLevel();
-        secondLevel = Leaderboard.SecondLevel();
+        List<Leaderboard> leaderboard = Leaderboard.Load();
+        List<Leaderboard> firstLevel  = leaderboard.FindAll(el => el.level == 1);
+        List<Leaderboard> secondLevel = leaderboard.FindAll(el => el.level == 2);
 
         if (firstLevel != null)
         {
@@ -33,8 +29,37 @@ public class LeaderMenu : MonoBehaviour
             level2GUI[2].GetComponent<TextMeshProUGUI>().text = secondLevel[2].time.ToString();
         }
     }
+}
 
-    public void SaveLeaderboard()
+[System.Serializable]
+public class Leaderboard
+{
+    public int level;
+    public int time;
+
+    public Leaderboard(int level, int time)
+    {
+        this.level = level;
+        this.time = time;
+    }
+
+    public static List<Leaderboard> Load()
+    {
+        if (File.Exists(Application.persistentDataPath + "/leaderboard.dat"))
+        {
+            BinaryFormatter formatter = new BinaryFormatter();
+            FileStream file = File.Open(Application.persistentDataPath + "/leaderboard.dat", FileMode.Open);
+
+            List<Leaderboard> content = formatter.Deserialize(file) as List<Leaderboard>;
+            file.Close();
+
+            return content;
+        }
+
+        return null;
+    }
+
+    public static void Save()
     {
         BinaryFormatter formatter = new BinaryFormatter();
         FileStream file = File.Open(Application.persistentDataPath + "/leaderboard.dat", FileMode.OpenOrCreate);
@@ -50,46 +75,5 @@ public class LeaderMenu : MonoBehaviour
 
         formatter.Serialize(file, l);
         file.Close();
-    }
-}
-
-[System.Serializable]
-public class Leaderboard
-{
-    public int level;
-    public int time;
-
-    private static List<Leaderboard> content;
-
-    public Leaderboard(int level, int time)
-    {
-        this.level = level;
-        this.time = time;
-    }
-
-    private static List<Leaderboard> Load()
-    {
-        if (File.Exists(Application.persistentDataPath + "/leaderboard.dat"))
-        {
-            BinaryFormatter formatter = new BinaryFormatter();
-            FileStream file = File.Open(Application.persistentDataPath + "/leaderboard.dat", FileMode.Open);
-
-            content = formatter.Deserialize(file) as List<Leaderboard>;
-            file.Close();
-
-            return content;
-        }
-
-        return null;
-    }
-
-    public static List<Leaderboard> FirstLevel()
-    {
-        return Leaderboard.Load().FindAll(el => el.level == 1);
-    }
-
-    public static List<Leaderboard> SecondLevel()
-    {
-        return Leaderboard.Load().FindAll(el => el.level == 2);
     }
 }
