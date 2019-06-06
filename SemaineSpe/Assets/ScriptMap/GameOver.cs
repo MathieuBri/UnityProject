@@ -27,7 +27,7 @@ public class GameOver : MonoBehaviour {
             || collision.gameObject.name == "Cube (14)" || collision.gameObject.name == "Cube (15)" || collision.gameObject.name == "Cube (16)" || collision.gameObject.name == "Cube (17)"
             || collision.gameObject.name == "Cube (18)" || collision.gameObject.name == "Cube (19)" || collision.gameObject.name == "Cube (20)" || collision.gameObject.name == "Cube (21)"
             || collision.gameObject.name == "Cube (22)" || collision.gameObject.name == "Cube (23)" || collision.gameObject.name == "Plane (15)" || collision.gameObject.name == "FallenCube"
-            || collision.gameObject.name == "FallenCube (1)" || collision.gameObject.name == "FallenCube (2)" || collision.gameObject.name == "FallenCube (3)" || collision.gameObject.name == "PlaneLave(1)"
+            || collision.gameObject.name == "FallenCube (1)" || collision.gameObject.name == "FallenCube (2)" || collision.gameObject.name == "FallenCube (3)" || collision.gameObject.name == "PlaneLave (1)"
             || collision.gameObject.name == "Bouboule" || collision.gameObject.name == "Bouboule (1)" || collision.gameObject.name == "Bouboule (2)"
             || collision.gameObject.name == "Bouboule (3)" || collision.gameObject.name == "Bouboule (4)" || collision.gameObject.name == "Bouboule (5)" || collision.gameObject.name == "Bouboule (6)"
             || collision.gameObject.name == "Bouboule (7)" || collision.gameObject.name == "Bouboule (8)" || collision.gameObject.name == "Bouboule (9)"
