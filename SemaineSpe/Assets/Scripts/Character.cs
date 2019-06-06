@@ -7,11 +7,9 @@ using UnityEngine.SceneManagement;
 public class Character : MonoBehaviour
 {
     public BoxCollider chestCollider;
+    public static List<TextMeshProUGUI> level1;
+
     private float timer;
-	void Start ()
-    {
-        
-	}
 	void Update ()
     {
         timer += Time.deltaTime;
