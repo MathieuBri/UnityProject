@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class cubeDeplacement : MonoBehaviour {
 
-    
+    public float vitesseCube;
     public string sens;
 	// Use this for initialization
 	void Start ()
@@ -18,11 +18,11 @@ public class cubeDeplacement : MonoBehaviour {
         //Debug.Log(sens);
         if (sens == "forward")
         {
-            transform.position += Vector3.forward * Time.deltaTime* Random.Range(10,20);
+            transform.position += Vector3.forward * Time.deltaTime* vitesseCube;
         }
         else if (sens == "back")
         {
-            transform.position += Vector3.back * Time.deltaTime * Random.Range(10, 20);
+            transform.position += Vector3.back * Time.deltaTime * vitesseCube;
         }
     }
 
