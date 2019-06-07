@@ -9,7 +9,7 @@ public class MainMenu : MonoBehaviour
 {
     public void PlayGame()
     {
-        SceneManager.LoadScene("Scenes/Map1");
+        SceneManager.LoadScene("Scenes/LevelSelection");
     }
 
     public void QuitGame()
@@ -21,5 +21,15 @@ public class MainMenu : MonoBehaviour
     public void BackToMainMenu()
     {
         SceneManager.LoadScene("Scenes/Menu");
+    }
+
+    public void NextLevel()
+    {
+        SceneManager.LoadScene("Scenes/Map2");
+    }
+
+    public void PlayLevel1()
+    {
+        SceneManager.LoadScene("Scenes/Map1");
     }
 }
