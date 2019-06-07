@@ -11,63 +11,44 @@ public class FallenCube : MonoBehaviour {
     public float vitesseCubes;
     private string start;
 
-    // Use this for initialization
-    void Start()
-    {
-
-    }
-
-    // Update is called once per frame
     void Update()
     {
-        //Debug.Log(sens);
-
-        if (start == "ok")
+        if (start == "first")
         {
             cube.transform.position += Vector3.down * Time.deltaTime * vitesseCubes;
         }
-        else if (start == "okk")
+        else if (start == "second")
         {
             cube1.transform.position += Vector3.down * Time.deltaTime * vitesseCubes;
         }
-        else if (start == "okkk")
+        else if (start == "third")
         {
             cube2.transform.position += Vector3.down * Time.deltaTime * vitesseCubes;
         }
-        else if (start == "okkkk")
+        else if (start == "fourth")
         {
             cube3.transform.position += Vector3.down * Time.deltaTime * vitesseCubes;
         }
-
-
-
-
-
-
     }
 
+    // lors de la collision avec le cube du bas, actionner le cube du haut (fonction sur 4 cubes)
     void OnCollisionEnter(Collision collision)
     {
         if (collision.gameObject.name == "FallenCube1")
         {
-            start = "ok";
+            start = "first";
         }
         else if (collision.gameObject.name == "FallenCube1 (1)")
         {
-            start = "okk";
+            start = "second";
         }
         else if (collision.gameObject.name == "FallenCube1 (2)")
         {
-            start = "okkk";
+            start = "third";
         }
         else if (collision.gameObject.name == "FallenCube1 (3)")
         {
-            start = "okkkk";
+            start = "fourth";
         }
-
-
-
     }
-
-    
 }

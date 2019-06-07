@@ -10,43 +10,32 @@ public class CameraSwitch : MonoBehaviour {
     AudioListener cameraOneAudioLis;
     AudioListener cameraTwoAudioLis;
 
-    // Use this for initialization
-    void Start () {
-        //Get Camera Listeners
+    void Start ()
+    {
         cameraOneAudioLis = cameraOne.GetComponent<AudioListener>();
         cameraTwoAudioLis = cameraTwo.GetComponent<AudioListener>();
 
-        //Camera Position Set
         cameraPostionChange(PlayerPrefs.GetInt("CameraPostion"));
-		
 	}
 	
-	// Update is called once per frame
-	void Update () {
-        //Change Camera Keyboard
-        swichtCamera();
-	}
-
-    public void cameraPositionM()
+	void Update ()
     {
-        cameraChangeCounter();
-    }
-    void swichtCamera()
-    {
+        // lors de l'appui sur la touche E, tourner la caméra du joueur à 180degrés
         if (Input.GetKeyDown(KeyCode.E))
         {
             cameraChangeCounter();
         }
     }
 
+    // compteur pour la caméra, 0 = vue de face - 1 = vue de derrière
     void cameraChangeCounter()
     {
         int cameraPostionCounter = PlayerPrefs.GetInt("CameraPostion");
         cameraPostionCounter++;
         cameraPostionChange(cameraPostionCounter);
-
     }
 
+    // changer la position de la caméra
     void cameraPostionChange(int camPosition)
     {
         if(camPosition > 1)

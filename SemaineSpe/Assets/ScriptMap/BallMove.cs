@@ -10,7 +10,7 @@ public class BallMove : MonoBehaviour {
     public float vitesseRotation;
     private int current;
 
-	// Update is called once per frame
+	// déplacement de la boule principale qui suit le joueur au début (map 1)
 	void Update () {
         if (transform.position != target[current].position)
         {
@@ -20,6 +20,5 @@ public class BallMove : MonoBehaviour {
         }
         else current = (current + 1) % target.Length;
         transform.Rotate(Vector3.up * Time.deltaTime * vitesseRotation);
-		
 	}
 }

@@ -8,7 +8,7 @@ public class GameControl : MonoBehaviour
 {
     public static GameControl control;
 
-    public List<Level> achievedLevels;
+    public List<Level> achievedLevels; // liste des niveaux accomplis (persistance)
 	void Awake () {
         if (control == null)
         {
@@ -21,6 +21,7 @@ public class GameControl : MonoBehaviour
         }
 	}
 
+    // sauvegarder les niveaux réussis
     public void Save()
     {
         BinaryFormatter bf = new BinaryFormatter();
@@ -30,6 +31,7 @@ public class GameControl : MonoBehaviour
         file.Close();
     }
 
+    // charger les niveaux réussis
     public void Load()
     {
         if (File.Exists(Application.persistentDataPath + "/levels.dat"))

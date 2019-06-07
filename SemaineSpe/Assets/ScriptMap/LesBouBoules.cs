@@ -13,12 +13,8 @@ public class LesBouBoules : MonoBehaviour {
     public int vitesseBoules;
 
     private float timer;
-	// Use this for initialization
-	void Start () {
-		
-	}
-	
-	// Update is called once per frame
+
+    // permet de faire déplacer les rangées de boules à différents intervalles
 	void Update () {
         if (start == "ok")
         {
@@ -62,17 +58,14 @@ public class LesBouBoules : MonoBehaviour {
                 }
             }
         }
-		
 	}
+
+    // lors de la collision avec l'événement déclencheur des boules, faire déplacer les boules
     void OnCollisionEnter(Collision collision)
     {
         if (collision.gameObject.name == "Declencheur")
         {
             start = "ok";
         }
-       
-
-
-
     }
 }

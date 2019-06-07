@@ -12,9 +12,10 @@ public class LeaderMenu : MonoBehaviour
     void Start()
     {
         List<Leaderboard> leaderboard = Leaderboard.Load();
-        List<Leaderboard> firstLevel  = leaderboard.FindAll(el => el.level == 1);
-        List<Leaderboard> secondLevel = leaderboard.FindAll(el => el.level == 2);
+        List<Leaderboard> firstLevel  = leaderboard.FindAll(el => el.level == 1); // récupère le classement du premier niveau
+        List<Leaderboard> secondLevel = leaderboard.FindAll(el => el.level == 2); // récupère le classement du second niveau
 
+        // changer les textes liés au classement du premier niveau
         if (firstLevel != null)
         {
             level1GUI[0].GetComponent<TextMeshProUGUI>().text = firstLevel[0].time.ToString();
@@ -22,6 +23,7 @@ public class LeaderMenu : MonoBehaviour
             level1GUI[2].GetComponent<TextMeshProUGUI>().text = firstLevel[2].time.ToString();
         }
 
+        // changer les textes liés au classement du second niveau
         if (secondLevel != null)
         {
             level2GUI[0].GetComponent<TextMeshProUGUI>().text = secondLevel[0].time.ToString();
@@ -37,12 +39,15 @@ public class Leaderboard
     public int level;
     public int time;
 
+    // constructeur
     public Leaderboard(int level, int time)
     {
         this.level = level;
         this.time = time;
     }
 
+    // chargement du classement
+    // @signature: Leaderboard.Load();
     public static List<Leaderboard> Load()
     {
         if (File.Exists(Application.persistentDataPath + "/leaderboard.dat"))
@@ -59,6 +64,8 @@ public class Leaderboard
         return null;
     }
 
+    // sauvegarde du classement (fonction uniquement utile afin de tester la persistance)
+    // @signature: Leaderboard.Save();
     public static void Save()
     {
         BinaryFormatter formatter = new BinaryFormatter();

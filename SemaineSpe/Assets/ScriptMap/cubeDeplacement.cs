@@ -6,16 +6,16 @@ public class cubeDeplacement : MonoBehaviour {
 
     public float vitesseCube;
     public string sens;
-	// Use this for initialization
+	
+    // au démarrage, définir le sens des cubes en avant
 	void Start ()
     {
         sens = "forward";
 	}
 	
-	// Update is called once per frame
+    // déplacer le cube en fonction du sens (cf: OnCollisionEnter)
 	void Update ()
     {
-        //Debug.Log(sens);
         if (sens == "forward")
         {
             transform.position += Vector3.forward * Time.deltaTime* vitesseCube;
@@ -26,6 +26,7 @@ public class cubeDeplacement : MonoBehaviour {
         }
     }
 
+    // lorsque le cube entre en collision avec un des 2 murs, inversers de déplacement du cube
     void OnCollisionEnter(Collision collision)
     {
         if (collision.gameObject.name == "Cube (6)")

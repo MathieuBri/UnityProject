@@ -12,6 +12,8 @@ public class GameOver : MonoBehaviour {
 
     private AudioSource[] sounds;
     private float timer;
+
+    // au démarrage, définir les volumes des sons en fonction du volume sauvegardé
     private void Start()
     {
         sounds = GetComponents<AudioSource>();
@@ -19,20 +21,23 @@ public class GameOver : MonoBehaviour {
         sounds[1].volume = PlayerPrefs.GetFloat("volume") / 100;
     }
 
+    // mettre à jour le timer et l'afficher sur l'écran du joueur
     void Update()
     {
         timer += Time.deltaTime;
         GameObject.Find("Time Value").GetComponent<Text>().text = System.Math.Round(timer, 1).ToString();
     }
+
     private void OnCollisionEnter(Collision collision)
     {
+        // lors d'une collision avec un élément "tueur", arrêter le son du jeu et afficher la scène "LostScreen"
         if (colliders.Find(x => x.name == collision.gameObject.name))
         {
             sounds[0].Stop();
             sounds[1].Play();
             SceneManager.LoadScene("Scenes/LostScreen");
         }
-        else if (collision.gameObject.name == chest.gameObject.name)
+        else if (collision.gameObject.name == chest.gameObject.name) // collision avec le coffre -> écran de victoire
         {
             SceneManager.LoadScene("Scenes/WinScreen");
         }
