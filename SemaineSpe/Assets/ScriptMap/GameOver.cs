@@ -12,6 +12,9 @@ public class GameOver : MonoBehaviour {
     {
         if (colliders.Find(x => x.name == collision.gameObject.name))
         {
+            AudioSource deathSound = gameObject.GetComponent<AudioSource>();
+            deathSound.volume = PlayerPrefs.GetFloat("volume");
+            deathSound.Play();
             SceneManager.LoadScene("Scenes/LostScreen");
         }
     }
